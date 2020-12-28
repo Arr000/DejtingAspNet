@@ -1,0 +1,30 @@
+﻿@model Identity.Controllers.SearchModel
+
+<form asp-action="Search" method="post">
+    <div class="form-group">
+        <label asp-for="SearchKey"></label>
+        <input asp-for="SearchKey" class="form-control"  />
+
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+@if (Model != null)
+{
+    <table class="table table-sm table-bordered">
+
+        @foreach (AppUser user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-controller="Home" asp-action="Display" asp-route-id="@user.Id">
+                        Go To Page
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+}
